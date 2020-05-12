@@ -1,62 +1,63 @@
-.mainContainer{
+.mainContainer {
   width: 100%;
-  height:100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: 'Michroma', sans-serif;
-  
 
-
-  .mainTitle{
+  .mainTitle {
     // TRY TO MAKE THIS METAL REFLECTIVE
     font-family: 'Faster One', cursive;
     font-size: 9vw;
     font-weight: lighter;
     margin-top: none;
-    background: -webkit-linear-gradient($eightiesYellow 30%,$eightiesOrange,$eightiesPink 70%,$eightiesPurple 90%);
+    background: -webkit-linear-gradient(
+      $eightiesYellow 30%,
+      $eightiesOrange,
+      $eightiesPink 70%,
+      $eightiesPurple 90%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     user-select: none;
   }
-
 }
 
-
-.navBarContainer{
+.navBarContainer {
   // border: 1px solid $lightblueTron;
-  width:100%;
-  display:flex;
+  width: 100%;
+  display: flex;
   justify-content: center;
 
-  .navBar{
+  .navBar {
     // border: 1px solid $lightblueTron;
     width: auto;
     display: flex;
 
-    #categories{
+    #categories {
       // border: 1px solid $lightblueTron;
-      display:flex;
+      display: flex;
       list-style: none;
-      padding:0;
-      margin:0;
-      :nth-child(1){
+      padding: 0;
+      margin: 0;
+      :nth-child(1) {
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
       }
-      :nth-last-child(1){
+      :nth-last-child(1) {
         border-top-right-radius: 5px;
-        border-bottom-right-radius:5px ;
+        border-bottom-right-radius: 5px;
       }
 
-      .disabled{
+      .disabled {
         background-color: $deepblueTron;
         color: $basestar;
         box-shadow: none;
         text-shadow: none;
         border: 1px solid $basestar;
-        &:hover{
+        &:hover {
           background-color: $deepblueTron;
           color: $basestar;
           box-shadow: none;
@@ -64,137 +65,131 @@
           border: 1px solid $basestar;
           cursor: default;
         }
-        &:active{
+        &:active {
           background-color: $deepblueTron;
           color: $basestar;
           box-shadow: none;
           text-shadow: none;
           border: 1px solid $basestar;
+        }
       }
-    }
-      li{
+      li {
         box-sizing: border-box;
-        padding:10px;
+        padding: 10px;
         border: 1px solid $lightblueTron;
         user-select: none;
         background-color: $basestar;
-        box-shadow:0px 0px 5px 2px lighten($cyanTron,10%), inset 0px 0px 5px 1px $cyanTron;
+        box-shadow: 0px 0px 5px 2px lighten($cyanTron, 10%),
+          inset 0px 0px 5px 1px $cyanTron;
 
-
-        &:hover{
+        &:hover {
           cursor: pointer;
-          background-color: lighten($cyanTron,20%);
+          background-color: lighten($cyanTron, 20%);
           color: $basestar;
         }
-        &:active{
+        &:active {
           background-color: $eightiesPurple;
           color: $lightblueTron;
-          box-shadow:0px 0px 5px 2px lighten($eightiesPink,10%), inset 0px 0px 5px 1px $eightiesPink;
+          box-shadow: 0px 0px 5px 2px lighten($eightiesPink, 10%),
+            inset 0px 0px 5px 1px $eightiesPink;
         }
       }
-
     }
   }
-
-
 }
 
-.snippetContainer{
+.snippetContainer {
   box-sizing: border-box;
   border: 1px solid $lightblueTron;
-  box-shadow:0px 0px 15px 2px lighten($cyanTron,10%), inset 0px 0px 15px 1px $cyanTron ;
+  box-shadow: 0px 0px 15px 2px lighten($cyanTron, 10%),
+    inset 0px 0px 15px 1px $cyanTron;
   border-radius: 6px;
-  width:80vw;
+  width: 80vw;
   height: 50vh;
-  min-width:700px;
+  min-width: 700px;
   min-height: 500px;
-  margin-top:2em;
+  margin-top: 2em;
   display: flex;
   overflow-y: auto;
   flex-direction: column;
 
-    #snippet{
-      height:100%;
-      width:100%;
-      display: flex;
-      flex-direction: column;
-      box-sizing: border-box;
-      padding-left:20px;
-      padding-right:20px;
-      font-size: 18px;
-    
+  #snippet {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 18px;
 
-
-      .green {
-        color:$eightiesCyan;
-      }
-      
-      .red {
-        background-color: $eightiesPink;
-      }
-      
-      .underline {
-        border-bottom: 1px solid $cyanTron;
-      }
-
-      .word{
-        margin-right:8px;
-        font-family: monospace;
-      }
-
-
-
-      #snippetText{
-        display: flex;
-        user-select: none;
-        
-      }
-
-      #noText{
-        text-align: center;
-        font-family: monospace;
-        font-size:30px;
-        user-select: none;
-      }
+    .green {
+      color: $eightiesCyan;
     }
+
+    .red {
+      background-color: $eightiesPink;
+    }
+
+    .underline {
+      border-bottom: 1px solid $cyanTron;
+    }
+
+    .word {
+      margin-right: 8px;
+      font-family: monospace;
+    }
+
+    #snippetText {
+      display: flex;
+      user-select: none;
+    }
+
+    #noText {
+      text-align: center;
+      font-family: monospace;
+      font-size: 30px;
+      user-select: none;
+    }
+  }
 }
 
-.inputContainer{
+.inputContainer {
   display: flex;
   padding: 2em;
   flex-direction: column;
   align-items: center;
   border: 1px solid $lightblueTron;
   border-radius: 6px;
-  box-shadow:0px 0px 15px 2px lighten($cyanTron,10%), inset 0px 0px 15px 1px $cyanTron ;
+  box-shadow: 0px 0px 15px 2px lighten($cyanTron, 10%),
+    inset 0px 0px 15px 1px $cyanTron;
   margin-top: 4em;
-  margin-bottom:4em;
-  width:50vw;
+  margin-bottom: 4em;
+  width: 50vw;
   min-width: 500px;
 
-  #timer{
+  #timer {
     box-sizing: border-box;
     width: auto;
     height: 2em;
     margin-bottom: 2em;
-
   }
-  
-  #textInput{
+
+  #textInput {
     resize: none;
-    width:40%;
+    width: 40%;
     font-size: 18px;
     border: 1px solid $lightblueTron;
-    box-shadow: 0px 0px 15px 2px lighten($cyanTron,10%), inset 0px 0px 15px 1px $cyanTron ;
+    box-shadow: 0px 0px 15px 2px lighten($cyanTron, 10%),
+      inset 0px 0px 15px 1px $cyanTron;
   }
-  .resultsContainer{
-    display:flex;
+  .resultsContainer {
+    display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
 
-      #explanation{
-      text-align: center
+    #explanation {
+      text-align: center;
     }
   }
-
 }

@@ -4,10 +4,7 @@ import App from './App.jsx';
 import styles from './scss/application.scss';
 
 if (module && module.hot) {
-    module.hot.accept()
+  module.hot.accept();
 }
 
-render(
-  <App/>,
-  document.getElementById('root')
-);
+render(<App />, document.getElementById('root'));

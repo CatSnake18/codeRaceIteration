@@ -39,11 +39,15 @@ const InputField = (props) => {
     }, [delay]);
   };
 
+  //determine # of players
+  
   // literally just resets the state after race (called at the end of checkForErrors)
   // Also sends data to the database (WPM and snippet ID)
   // Sent to userController
   const resetState = () => {
     console.log('this is our final', wordsPerMinute);
+
+    //add into state the number of players
     setStartTime(0);
     setCompletedWords([]);
     setSnippetSpace([]);

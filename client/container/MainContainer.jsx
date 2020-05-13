@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useState, useEffect, Fragment } from 'react';
 import NavBar from '../components/NavBar.jsx';
 import InputField from '../components/InputField.jsx';
 import CodeSnippet from '../components/CodeSnippet.jsx';
@@ -81,8 +81,19 @@ class MainContainer extends Component {
           inputValue={this.state.inputValue}
           completedWords={this.state.completedWords}
         />
+        <CodeSnippet
+          content={this.state.content}
+          inputValue={this.state.inputValue}
+          completedWords={this.state.completedWords}
+        />
 
         <InputField
+          content={this.state.content}
+          giveCompletedWords={this.giveCompletedWords}
+          giveInputValue={this.giveInputValue}
+          startRace={this.startRace}
+        />
+         <InputField
           content={this.state.content}
           giveCompletedWords={this.giveCompletedWords}
           giveInputValue={this.giveInputValue}

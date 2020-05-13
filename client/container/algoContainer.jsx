@@ -1,26 +1,23 @@
-import React, { Component, useState, useEffect, Fragment } from 'react';
-import NavBar from '../components/NavBar.jsx';
-import InputField from '../components/InputField.jsx';
-import InputFieldTwo from '../components/InputFieldTwo.jsx';
-import CodeSnippet from '../components/CodeSnippet.jsx';
-import CodeSnippetTwo from '../components/CodeSnippetTwo.jsx';
-
+import React, { Component, useState, useEffect, Fragment } from "react";
+import AlgoNavBar from "../components/AlgoNavBar.jsx";
+import InputField from "../components/InputField.jsx";
+import InputFieldTwo from "../components/InputFieldTwo.jsx";
+import AlgoSnippet from "../components/AlgoSnippet.jsx";
+import AlgoSnippetTwo from "../components/AlgoSnippetTwo.jsx";
 
 class AlgoContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: [],
+      problems: [],
       content: {},
-      currentSnippet: '',
-      inputValue: '',
-      completedWords: [],
+      currentSnippet: "",
       hasRace: false,
       raceFinished: true,
     };
     this.handleClick = this.handleClick.bind(this);
-    this.giveInputValue = this.giveInputValue.bind(this);
-    this.giveCompletedWords = this.giveCompletedWords.bind(this);
+    // this.giveInputValue = this.giveInputValue.bind(this);
+    // this.giveCompletedWords = this.giveCompletedWords.bind(this);
     this.startRace = this.startRace.bind(this);
     this.raceFinished = this.raceFinished.bind(this);
   }
@@ -34,9 +31,9 @@ class AlgoContainer extends Component {
     this.setState({ inputValue: inputValue });
   }
 
-//   giveCompletedWords(completedWords) {
-//     this.setState({ completedWords: completedWords });
-//   }
+  //   giveCompletedWords(completedWords) {
+  //     this.setState({ completedWords: completedWords });
+  //   }
 
   startRace() {
     // console.log("This is our state of the race", this.state.hasRace)
@@ -45,35 +42,35 @@ class AlgoContainer extends Component {
 
   // Loads all snippets of the category and randomly chooses one, also has properties other than the actual snippet (its meaning, category, max_time)
   handleClick(endpoint) {
-    fetch(`/api/${endpoint}`)
-      .then((snippet) => snippet.json())
+    fetch(`/algo/${endpoint}`)
+      .then((problem) => problem.json())
       // .then(json => console.log(json))
-      .then((snippets) => {
-        const chosenSnippet =
-          snippets[Math.floor(Math.random() * snippets.length)];
+      .then((problems) => {
+        // const chosenProblem =
+        //   problems[Math.floor(Math.random() * problems.length)];
         //console.log(chosenSnippet)
-        this.setState({ content: chosenSnippet });
+        this.setState({ problem: problems });
       });
   }
 
   // Shows the categories after the component is mounted
   componentDidMount() {
     fetch(`/api/`)
-      .then((category) => category.json())
+      .then((problem) => problem.json())
       .then((response) => {
-        const categoryArray = response.map((element) => {
-          return element.category;
+        const problemArray = response.map((element) => {
+          return element.problem;
         });
-        this.setState({ categories: categoryArray });
+        this.setState({ problems: problemArray });
       });
   }
 
   render() {
     return (
-      <div className="mainContainer">
-        <div className="mainTitle"> CODERACER</div>
+      <div className="algoContainer">
+        <div className="algoTitle"> ALGORACER</div>
 
-        <NavBar
+        <AlgoNavBar
           isRaceStarted={this.state.hasRace}
           categories={this.state.categories}
           handleClick={this.handleClick}
@@ -96,13 +93,12 @@ class AlgoContainer extends Component {
           giveInputValue={this.giveInputValue}
           startRace={this.startRace}
         />
-         <InputFieldTwo
+        <InputFieldTwo
           content={this.state.content}
           giveCompletedWords={this.giveCompletedWords}
           giveInputValue={this.giveInputValue}
           startRace={this.startRace}
         />
-
       </div>
     );
   }

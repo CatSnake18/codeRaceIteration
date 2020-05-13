@@ -1,10 +1,9 @@
-import React, { Component, useState, useEffect, Fragment } from 'react';
-import NavBar from '../components/NavBar.jsx';
-import InputField from '../components/InputField.jsx';
-import InputFieldTwo from '../components/InputFieldTwo.jsx';
-import CodeSnippet from '../components/CodeSnippet.jsx';
-import CodeSnippetTwo from '../components/CodeSnippetTwo.jsx';
-
+import React, { Component, useState, useEffect, Fragment } from "react";
+import NavBar from "../components/NavBar.jsx";
+import InputField from "../components/InputField.jsx";
+import InputFieldTwo from "../components/InputFieldTwo.jsx";
+import CodeSnippet from "../components/CodeSnippet.jsx";
+import CodeSnippetTwo from "../components/CodeSnippetTwo.jsx";
 
 class MainContainer extends Component {
   constructor(props) {
@@ -12,15 +11,19 @@ class MainContainer extends Component {
     this.state = {
       categories: [],
       content: {},
-      currentSnippet: '',
-      inputValue: '',
+      currentSnippet: "",
+      inputValue: "",
+      inputValueTwo: "",
       completedWords: [],
+      completedWordsTwo: [],
       hasRace: false,
       raceFinished: true,
     };
     this.handleClick = this.handleClick.bind(this);
     this.giveInputValue = this.giveInputValue.bind(this);
     this.giveCompletedWords = this.giveCompletedWords.bind(this);
+    this.giveInputValueTwo = this.giveInputValueTwo.bind(this);
+    this.giveCompletedWordsTwo = this.giveCompletedWordsTwo.bind(this);
     this.startRace = this.startRace.bind(this);
     this.raceFinished = this.raceFinished.bind(this);
   }
@@ -36,6 +39,14 @@ class MainContainer extends Component {
 
   giveCompletedWords(completedWords) {
     this.setState({ completedWords: completedWords });
+  }
+
+  giveInputValueTwo(inputValueTwo) {
+    this.setState({ inputValueTwo: inputValueTwo });
+  }
+
+  giveCompletedWordsTwo(completedWordsTwo) {
+    this.setState({ completedWordsTwo: completedWordsTwo });
   }
 
   startRace() {
@@ -86,8 +97,8 @@ class MainContainer extends Component {
         />
         <CodeSnippetTwo
           content={this.state.content}
-          inputValue={this.state.inputValue}
-          completedWords={this.state.completedWords}
+          inputValueTwo={this.state.inputValueTwo}
+          completedWordsTwo={this.state.completedWordsTwo}
         />
 
         <InputField
@@ -96,13 +107,12 @@ class MainContainer extends Component {
           giveInputValue={this.giveInputValue}
           startRace={this.startRace}
         />
-         <InputFieldTwo
+        <InputFieldTwo
           content={this.state.content}
-          giveCompletedWords={this.giveCompletedWords}
-          giveInputValue={this.giveInputValue}
+          giveCompletedWordsTwo={this.giveCompletedWordsTwo}
+          giveInputValueTwo={this.giveInputValueTwo}
           startRace={this.startRace}
         />
-
       </div>
     );
   }

@@ -1,7 +1,8 @@
-@import '_variables';
-@import '_loginContainer';
-@import '_mainContainer';
-@import '_choiceContainer';
+@import "_variables";
+@import "_loginContainer";
+@import "_mainContainer";
+@import "_choiceContainer";
+@import "_algoContainer";
 // everything is imported into here.
 
 html,
@@ -179,7 +180,7 @@ body {
   }
 }
 .crt::after {
-  content: ' ';
+  content: " ";
   display: block;
   position: absolute;
   top: 0;
@@ -193,7 +194,7 @@ body {
   animation: flicker 0.15s infinite;
 }
 .crt::before {
-  content: ' ';
+  content: " ";
   display: block;
   position: absolute;
   top: 0;

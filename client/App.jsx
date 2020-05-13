@@ -24,13 +24,12 @@ const App = () => {
   if (isLoggedIn) {
     return (
       <div className="containers">
-        <MainContainer />
+        <ChoiceContainer />
       </div>
     );
   } else {
     return (
       <div className="containers">
-        <ChoiceContainer />
         <LoginContainer />
       </div>
     );

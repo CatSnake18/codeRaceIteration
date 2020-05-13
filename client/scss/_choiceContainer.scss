@@ -21,19 +21,23 @@
     margin-top: 2em;
     display: flex;
     align-self: center;
+    font-family: 'Michroma', sans-serif;
     font-size: 32px;
   }
   .algo , .code{
     $buttonColor: $basestar;
+    
     box-sizing: border-box;
     border-radius: 6px;
     background-color: darken($yellowTron, 5%);
+    font-family: 'Michroma', sans-serif;
     // display: flex;
     // flex-direction: column;
     color: $buttonColor;
-    width: 500px;
+    align-self: center;
+    width: 800px;
     height: 120px;
-    margin:auto;
+    margin: auto;
     fill: $buttonColor;
     font-size: 28px;
     box-shadow: 0px 0px 10px 3px $orangeTron;

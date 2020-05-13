@@ -1,20 +1,20 @@
-import React, { Component, useState, useEffect, useRef } from 'react';
-import Results from './Results.jsx';
+import React, { Component, useState, useEffect, useRef } from "react";
+import Results from "./Results.jsx";
 
 // calculatewpm = (typedCharacters/5) / endTime-startTime          *          60seconds / endTime-startTime
 
-const InputField = (props) => {
+const InputFieldTwo = (props) => {
   // I know I know. Why not use Redux? Because.
-  //lots of hooks and lends to some back and forth messiness, good refactor opportunity probably?
-  const [startTime, setStartTime] = useState(0);
-  const [wordsPerMinute, setWordsPerMinute] = useState(0);
-  const [completedWords, setCompletedWords] = useState([]);
-  const [snippetSpace, setSnippetSpace] = useState([]);
-  const [snippetProp, setSnippetProp] = useState('');
+  // lots of hooks and lends to some back and forth messiness, good refactor opportunity probably?
+  const [startTimeTwo, setStartTimeTwo] = useState(0);
+  const [wordsPerMinuteTwo, setWordsPerMinuteTwo] = useState(0);
+  const [completedWordsTwo, setCompletedWordsTwo] = useState([]);
+  const [snippetSpaceTwo, setSnippetSpaceTwo] = useState([]);
+  const [snippetProp, setSnippetProp] = useState("");
   const [countDown, setCountDown] = useState(5);
   const [raceStarted, setRaceStarted] = useState(false);
   const [activeCountDown, setActiveCountDown] = useState(false);
-  const [wpmResults, setWpmResults] = useState({});
+  const [wpmResultsTwo, setWpmResultsTwo] = useState({});
 
   // this is a custom made hook to allow the use of setInterval,
   // check the blog post of Dan Abramov about this for more info
@@ -40,57 +40,57 @@ const InputField = (props) => {
   };
 
   //determine # of players
-  
+
   // literally just resets the state after race (called at the end of checkForErrors)
   // Also sends data to the database (WPM and snippet ID)
   // Sent to userController
   const resetState = () => {
-    console.log('this is our final', wordsPerMinute);
+    console.log("this is our final", wordsPerMinuteTwo);
 
     //add into state the number of players
-    setStartTime(0);
-    setCompletedWords([]);
-    setSnippetSpace([]);
-    setSnippetProp('');
+    setStartTimeTwo(0);
+    setCompletedWordsTwo([]);
+    setSnippetSpaceTwo([]);
+    setSnippetProp("");
     setRaceStarted(false);
     setCountDown(5);
     props.startRace();
-    props.giveCompletedWords([]);
-    props.giveInputValue('');
+    props.giveCompletedWordsTwo([]);
+    props.giveInputValueTwo("");
     // console.log('You win!')
-    document.getElementById('timer').innerHTML = 'FINISHED';
+    document.getElementById("timer").innerHTML = "FINISHED";
     // console.log("this is our full props.content", props.content)
     fetch(`/api/highScore`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        wordsPerMinute: wordsPerMinute,
+        wordsPerMinuteTwo: wordsPerMinuteTwo,
         snippet_id: props.content.snippet_id,
       }),
     })
       .then((response) => response.json())
       .then((response) => {
-        setWordsPerMinute(0);
+        setWordsPerMinuteTwo(0);
         //response has keys message, wpm
-        setWpmResults(response);
+        setWpmResultsTwo(response);
       });
   };
 
   // stop player from typing prior to start of race
   const isRaceOn = (e) => {
     if (!raceStarted) {
-      e.target.value = '';
-      props.giveInputValue('');
+      e.target.value = "";
+      props.giveInputValueTwo("");
     }
   };
 
   // this is needed to ensure that if the content of the code snippet changes that the appropriate props are updated.
   useEffect(() => {
-    if (snippetSpace.length === 0 && props.content.content) {
-      setSnippetSpace(
-        (space) => (space = props.content.content.trim().split(/[ \t]+/)),
+    if (snippetSpaceTwo.length === 0 && props.content.content) {
+      setSnippetSpaceTwo(
+        (space) => (space = props.content.content.trim().split(/[ \t]+/))
       );
       setSnippetProp((snip) => (snip = props.content.content));
     }
@@ -101,8 +101,8 @@ const InputField = (props) => {
     // console.log('snippetSpace', snippetSpace)
     // console.log('split contents', props.content.content.split(' '))
     if (snippetProp != props.content.content) {
-      setSnippetSpace(
-        (space) => (space = props.content.content.trim().split(/[ \t]+/)),
+      setSnippetSpaceTwo(
+        (space) => (space = props.content.content.trim().split(/[ \t]+/))
       );
       setSnippetProp((snip) => (snip = props.content.content));
     }
@@ -111,24 +111,24 @@ const InputField = (props) => {
   const checkForErrors = (event) => {
     // we won't care about tabbing in our text or spaces, so we process the code snippet accordingly.
     // console.log("we are doing something")
-    let snippetWords = snippetSpace;
+    let snippetWordsTwo = snippetSpaceTwo;
     // console.log("Snippet words", snippetWords)
-    let wholeWord = event.target.value;
+    let wholeWordTwo = event.target.value;
     // console.log("wholeWord",wholeWord)
-    let lastInput = wholeWord[wholeWord.length - 1];
+    let lastInputTwo = wholeWordTwo[wholeWordTwo.length - 1];
     // console.log('lastInput', lastInput)
 
     // currentWord = array of current snippet words at index 0
-    const currentWord = snippetWords[0];
+    const currentWord = snippetWordsTwo[0];
     // Gets rid of empty spaces from linebreaks, etc.
-    if (currentWord === '' || currentWord === '\n') {
-      let finishedWords = [...completedWords, currentWord];
-      event.target.value = '';
-      let remainingWords = [...snippetWords.slice(1)];
-      setSnippetSpace(remainingWords);
-      setCompletedWords(finishedWords);
-      props.giveInputValue('');
-      props.giveCompletedWords(finishedWords);
+    if (currentWord === "" || currentWord === "\n") {
+      let finishedWordsTwo = [...completedWordsTwo, currentWord];
+      event.target.value = "";
+      let remainingWordsTwo = [...snippetWordsTwo.slice(1)];
+      setSnippetSpaceTwo(remainingWordsTwo);
+      setCompletedWordsTwo(finishedWordsTwo);
+      props.giveInputValueTwo("");
+      props.giveCompletedWordsTwo(finishedWordsTwo);
     }
     // console.log("current word",currentWord)
 
@@ -136,34 +136,34 @@ const InputField = (props) => {
     // Actual functionality is here, checks currently typed word after pressing spacebar
     /////////////////////////////////////
 
-    if (lastInput === ' ' || lastInput === '\n') {
+    if (lastInputTwo === " " || lastInputTwo === "\n") {
       // console.log("We got a match")
       // console.log(wholeWord.trim(),"===", currentWord)
       // If the inputted word(trimmed of any spaces) matches the array of snippet words at index(trimmed of any spaces)
-      if (wholeWord.trim() === currentWord.trim()) {
+      if (wholeWordTwo.trim() === currentWord.trim()) {
         // console.log("WE MATCHED OUR TRIM")
         // slice snippetwords by first index, assigned to remainingWords
-        let remainingWords = [...snippetWords.slice(1)];
+        let remainingWordsTwo = [...snippetWordsTwo.slice(1)];
         // console.log(remainingWords)
         //If there are no more remaining words, call the function to resetState/end the game
-        if (remainingWords.length === 0) {
-          event.target.value = '';
+        if (remainingWordsTwo.length === 0) {
+          event.target.value = "";
           return resetState();
         }
         // updates finishedWords array to keep track of progress
-        let finishedWords = [...completedWords, currentWord];
+        let finishedWordsTwo = [...completedWordsTwo, currentWord];
         // resets textArea
-        event.target.value = '';
+        event.target.value = "";
         // Reassign/update SnippetSpace and CompletedWords to keep track of progress
-        setSnippetSpace(remainingWords);
-        setCompletedWords(finishedWords);
-        props.giveCompletedWords(finishedWords);
-        props.giveInputValue('');
+        setSnippetSpaceTwo(remainingWordsTwo);
+        setCompletedWordsTwo(finishedWordsTwo);
+        props.giveCompletedWordsTwo(finishedWordsTwo);
+        props.giveInputValueTwo("");
       } else {
-        event.target.value = wholeWord.trim();
+        event.target.value = wholeWordTwo.trim();
       }
     } else {
-      props.giveInputValue(wholeWord);
+      props.giveInputValueTwo(wholeWordTwo);
       // update wholeWord
       //update lastInput
     }
@@ -171,9 +171,9 @@ const InputField = (props) => {
 
   //establishes start time upon termination of the starting clock
   const startRace = () => {
-    if (startTime === 0) {
-      setStartTime((prevTime) => Date.now());
-      console.log('GO! CURRENT TIME IS', startTime);
+    if (startTimeTwo === 0) {
+      setStartTimeTwo((prevTime) => Date.now());
+      console.log("GO! CURRENT TIME IS", startTimeTwo);
     }
     setRaceStarted((raceStarted) => (raceStarted = true));
   };
@@ -181,15 +181,15 @@ const InputField = (props) => {
   //calculates approximate, live wpm
   const calculateWPM = (event) => {
     if (raceStarted) {
-      let inputLength = completedWords.reduce((acc, curr) => {
+      let inputLength = completedWordsTwo.reduce((acc, curr) => {
         acc = acc + curr.length;
         return acc;
       }, 0);
       let words = inputLength / 5;
-      let elapsedTime = Date.now() - startTime;
+      let elapsedTime = Date.now() - startTimeTwo;
       let minute = 60000;
       let wpm = (words * minute) / elapsedTime;
-      setWordsPerMinute(wpm.toFixed(2));
+      setWordsPerMinuteTwo(wpm.toFixed(2));
     }
   };
 
@@ -206,18 +206,18 @@ const InputField = (props) => {
     () => {
       if (activeCountDown) {
         document.getElementById(
-          'timer',
+          "timerTwo"
         ).innerHTML = `Starts in ... ${countDown}`;
         if (countDown > 0) {
           setCountDown((time) => time - 1);
         } else {
-          document.getElementById('timer').innerHTML = 'GO!';
+          document.getElementById("timerTwo").innerHTML = "GO!";
           setActiveCountDown((active) => (active = false));
           startRace();
         }
       }
     },
-    activeCountDown ? 1000 : null,
+    activeCountDown ? 1000 : null
   );
 
   // If there is a snippet, lets you actually type in the textarea, otherwise, it's just an empty box that does nothing onclick
@@ -247,17 +247,17 @@ const InputField = (props) => {
 
   return (
     <div className="inputContainer">
-      <div id="timer"></div>
+      <div id="timerTwo"></div>
       {textArea}
 
       <p id="currentWPM">
         {/* Current WPM */}
-        current WPM: {wordsPerMinute}
+        current WPM: {wordsPerMinuteTwo}
       </p>
 
-      <Results finishedWPM={wpmResults} content={props.content} />
+      <Results finishedWPM={wpmResultsTwo} content={props.content} />
     </div>
   );
 };
 
-export default InputField;
+export default InputFieldTwo;

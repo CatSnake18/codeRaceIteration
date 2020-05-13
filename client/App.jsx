@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import LoginContainer from './container/loginContainer.jsx';
 import MainContainer from './container/MainContainer.jsx';
+import ChoiceContainer from './container/choiceContainer.jsx';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,6 +29,7 @@ const App = () => {
   } else {
     return (
       <div className="containers">
+        <ChoiceContainer />
         <LoginContainer />
       </div>
     );

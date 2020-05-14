@@ -185,14 +185,14 @@
   }
 
   #textInput {
-    resize: both;
+    resize: none;
     margin-top: 25px;
     width: 500px;
     height:400px;
     font-size: 18px;
     border: 0px solid $lightblueTron;
     color: $cyanTron;
-    background-color: black;
+    background-color: transparent;
     //box-shadow: 0px 0px 15px 2px lighten($cyanTron, 10%),
       //inset 0px 0px 15px 1px $cyanTron;
   }

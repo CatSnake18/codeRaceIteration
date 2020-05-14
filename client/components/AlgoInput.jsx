@@ -28,7 +28,7 @@ const AlgoInput = (props) => {
         value={value}
       />
       <br/>
-      <input id="boobs" value="submit your shit" type="submit" />
+      <input id="boobs" value="Submit your code" type="submit" />
     </form>
     </div>
   );

@@ -83,8 +83,8 @@ app.use('/api', apiRouter);
 
 app.use('/algos', algoRouter);
 //  generic error handler
-app.use('*', (req, res, next) => {
-  res.status(404).send('YOU TRIED A NON EXISTENT PATH');
+app.use('/*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 // Error Handler

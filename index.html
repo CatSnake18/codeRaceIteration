@@ -1,17 +1,35 @@
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>CodeRacer</title>
-  <link rel="stylesheet" type="text/css" href="build/main.css">
-  <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@500&display=swap" rel="stylesheet">
-</head>
-<body>
- 
-  <div id="root" class = "crt"></div>
-  
-  <script src="build/bundle.js"></script>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>CodeRacer</title>
+    <link rel="stylesheet" type="text/css" href="build/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+  </head>
+  <body>
+    <div id="root" class="crt"></div>
+
+    <script src="build/bundle.js"></script>
+    <script>
+      const socket = io.connect('http://localhost:3000');
+      socket.on('connect', () => {
+        socket.send('hi');
+
+        socket.on('message', (msg) => {
+          console.log('html message that sends on load');
+        });
+      });
+    </script>
+  </body>
 </html>

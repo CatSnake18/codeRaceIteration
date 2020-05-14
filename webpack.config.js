@@ -1,7 +1,9 @@
 const path = require('path');
+
 const mode = process.env.NODE_ENV;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
+
 module.exports = {
   devServer: {
     publicPath: '/build/',
@@ -9,6 +11,7 @@ module.exports = {
       '/callback': 'http://localhost:3000',
       '/api': 'http://localhost:3000',
       '/verify': 'http://localhost:3000',
+      '/algos': 'http://localhost:3000',
     },
     port: 8080,
     hot: true,

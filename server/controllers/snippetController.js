@@ -54,10 +54,10 @@ snippetController.createDatabase = async (req, res, next) => {
 //  schema for our snippet table
 /*
 CREATE TABLE snippet (
-  snippet_id     SERIAL PRIMARY KEY,
-  category       VARCHAR(1000),
-  content        VARCHAR(1000),
-  meaning        VARCHAR(1000),
+  algo_id     SERIAL PRIMARY KEY,
+  problem       VARCHAR(1000),
+  input        VARCHAR(1000),
+  expected        VARCHAR(1000),
   max_time       INT
 );
 */

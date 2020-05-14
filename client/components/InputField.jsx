@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect, useRef } from 'react';
 import Results from './Results.jsx';
+import socketIOClient from 'socket.io-client';
 
 // calculatewpm = (typedCharacters/5) / endTime-startTime          *          60seconds / endTime-startTime
 
@@ -15,6 +16,7 @@ const InputField = (props) => {
   const [raceStarted, setRaceStarted] = useState(false);
   const [activeCountDown, setActiveCountDown] = useState(false);
   const [wpmResults, setWpmResults] = useState({});
+  const [response, setResponse] = useState(0);
 
   // this is a custom made hook to allow the use of setInterval,
   // check the blog post of Dan Abramov about this for more info
@@ -22,7 +24,7 @@ const InputField = (props) => {
   const useInterval = (callback, delay) => {
     const savedCallback = useRef();
 
-    // Remember the latest callback.
+    // Remember the latest callback.m
     useEffect(() => {
       savedCallback.current = callback;
     }, [callback]);
@@ -40,7 +42,7 @@ const InputField = (props) => {
   };
 
   //determine # of players
-  
+
   // literally just resets the state after race (called at the end of checkForErrors)
   // Also sends data to the database (WPM and snippet ID)
   // Sent to userController
@@ -200,6 +202,9 @@ const InputField = (props) => {
     }
     setActiveCountDown((active) => (active = true));
     props.startRace();
+    const socket = socketIOClient('http://localhost:3000');
+    socket.on('outgoing data', (data) => setResponse(wordsPerMinute));
+    socket.emit('message', 'MESSAGE FROM FUCKING COUNDOWN IN INPUTFIELD');
   };
   // Adds the countdown timer to the page
   useInterval(
@@ -252,6 +257,7 @@ const InputField = (props) => {
 
       <p id="currentWPM">
         {/* Current WPM */}
+        MOTHERFUCKER: {response}
         current WPM: {wordsPerMinute}
       </p>
 

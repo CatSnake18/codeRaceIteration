@@ -1,5 +1,6 @@
-import React, { Component, useState, useEffect, useRef } from "react";
-import Results from "./Results.jsx";
+import React, { Component, useState, useEffect, useRef } from 'react';
+import Results from './Results.jsx';
+// import InputField from './InputField';
 
 // calculatewpm = (typedCharacters/5) / endTime-startTime          *          60seconds / endTime-startTime
 
@@ -10,7 +11,7 @@ const InputFieldTwo = (props) => {
   const [wordsPerMinuteTwo, setWordsPerMinuteTwo] = useState(0);
   const [completedWordsTwo, setCompletedWordsTwo] = useState([]);
   const [snippetSpaceTwo, setSnippetSpaceTwo] = useState([]);
-  const [snippetProp, setSnippetProp] = useState("");
+  const [snippetProp, setSnippetProp] = useState('');
   const [countDown, setCountDown] = useState(5);
   const [raceStarted, setRaceStarted] = useState(false);
   const [activeCountDown, setActiveCountDown] = useState(false);
@@ -45,25 +46,25 @@ const InputFieldTwo = (props) => {
   // Also sends data to the database (WPM and snippet ID)
   // Sent to userController
   const resetState = () => {
-    console.log("this is our final", wordsPerMinuteTwo);
+    console.log('this is our final', wordsPerMinuteTwo);
 
     //add into state the number of players
     setStartTimeTwo(0);
     setCompletedWordsTwo([]);
     setSnippetSpaceTwo([]);
-    setSnippetProp("");
+    setSnippetProp('');
     setRaceStarted(false);
     setCountDown(5);
     props.startRace();
     props.giveCompletedWordsTwo([]);
-    props.giveInputValueTwo("");
+    props.giveInputValueTwo('');
     // console.log('You win!')
-    document.getElementById("timer").innerHTML = "FINISHED";
+    document.getElementById('timer').innerHTML = 'FINISHED';
     // console.log("this is our full props.content", props.content)
     fetch(`/api/highScore`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         wordsPerMinuteTwo: wordsPerMinuteTwo,
@@ -81,8 +82,8 @@ const InputFieldTwo = (props) => {
   // stop player from typing prior to start of race
   const isRaceOn = (e) => {
     if (!raceStarted) {
-      e.target.value = "";
-      props.giveInputValueTwo("");
+      e.target.value = '';
+      props.giveInputValueTwo('');
     }
   };
 
@@ -90,7 +91,7 @@ const InputFieldTwo = (props) => {
   useEffect(() => {
     if (snippetSpaceTwo.length === 0 && props.content.content) {
       setSnippetSpaceTwo(
-        (space) => (space = props.content.content.trim().split(/[ \t]+/))
+        (space) => (space = props.content.content.trim().split(/[ \t]+/)),
       );
       setSnippetProp((snip) => (snip = props.content.content));
     }
@@ -102,7 +103,7 @@ const InputFieldTwo = (props) => {
     // console.log('split contents', props.content.content.split(' '))
     if (snippetProp != props.content.content) {
       setSnippetSpaceTwo(
-        (space) => (space = props.content.content.trim().split(/[ \t]+/))
+        (space) => (space = props.content.content.trim().split(/[ \t]+/)),
       );
       setSnippetProp((snip) => (snip = props.content.content));
     }
@@ -121,13 +122,13 @@ const InputFieldTwo = (props) => {
     // currentWord = array of current snippet words at index 0
     const currentWord = snippetWordsTwo[0];
     // Gets rid of empty spaces from linebreaks, etc.
-    if (currentWord === "" || currentWord === "\n") {
+    if (currentWord === '' || currentWord === '\n') {
       let finishedWordsTwo = [...completedWordsTwo, currentWord];
-      event.target.value = "";
+      event.target.value = '';
       let remainingWordsTwo = [...snippetWordsTwo.slice(1)];
       setSnippetSpaceTwo(remainingWordsTwo);
       setCompletedWordsTwo(finishedWordsTwo);
-      props.giveInputValueTwo("");
+      props.giveInputValueTwo('');
       props.giveCompletedWordsTwo(finishedWordsTwo);
     }
     // console.log("current word",currentWord)
@@ -136,7 +137,7 @@ const InputFieldTwo = (props) => {
     // Actual functionality is here, checks currently typed word after pressing spacebar
     /////////////////////////////////////
 
-    if (lastInputTwo === " " || lastInputTwo === "\n") {
+    if (lastInputTwo === ' ' || lastInputTwo === '\n') {
       // console.log("We got a match")
       // console.log(wholeWord.trim(),"===", currentWord)
       // If the inputted word(trimmed of any spaces) matches the array of snippet words at index(trimmed of any spaces)
@@ -147,18 +148,18 @@ const InputFieldTwo = (props) => {
         // console.log(remainingWords)
         //If there are no more remaining words, call the function to resetState/end the game
         if (remainingWordsTwo.length === 0) {
-          event.target.value = "";
+          event.target.value = '';
           return resetState();
         }
         // updates finishedWords array to keep track of progress
         let finishedWordsTwo = [...completedWordsTwo, currentWord];
         // resets textArea
-        event.target.value = "";
+        event.target.value = '';
         // Reassign/update SnippetSpace and CompletedWords to keep track of progress
         setSnippetSpaceTwo(remainingWordsTwo);
         setCompletedWordsTwo(finishedWordsTwo);
         props.giveCompletedWordsTwo(finishedWordsTwo);
-        props.giveInputValueTwo("");
+        props.giveInputValueTwo('');
       } else {
         event.target.value = wholeWordTwo.trim();
       }
@@ -173,7 +174,7 @@ const InputFieldTwo = (props) => {
   const startRace = () => {
     if (startTimeTwo === 0) {
       setStartTimeTwo((prevTime) => Date.now());
-      console.log("GO! CURRENT TIME IS", startTimeTwo);
+      console.log('GO! CURRENT TIME IS', startTimeTwo);
     }
     setRaceStarted((raceStarted) => (raceStarted = true));
   };
@@ -206,18 +207,18 @@ const InputFieldTwo = (props) => {
     () => {
       if (activeCountDown) {
         document.getElementById(
-          "timerTwo"
+          'timerTwo',
         ).innerHTML = `Starts in ... ${countDown}`;
         if (countDown > 0) {
           setCountDown((time) => time - 1);
         } else {
-          document.getElementById("timerTwo").innerHTML = "GO!";
+          document.getElementById('timerTwo').innerHTML = 'GO!';
           setActiveCountDown((active) => (active = false));
           startRace();
         }
       }
     },
-    activeCountDown ? 1000 : null
+    activeCountDown ? 1000 : null,
   );
 
   // If there is a snippet, lets you actually type in the textarea, otherwise, it's just an empty box that does nothing onclick

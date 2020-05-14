@@ -3,19 +3,48 @@ const path = require('path');
 const cookieparser = require('cookie-parser');
 
 const app = express();
+const PORT = 3000;
+
+const server = app.listen(PORT, () => console.log('listening on port 3000'));
+const io = require('socket.io')(server);
 
 const oauthController = require('./controllers/oauthController');
 const sessionController = require('./controllers/sessionController');
 
-const PORT = 3000;
 const apiRouter = require('./routes/api');
+const algoRouter = require('./routes/algos');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
 
 // boiler plate to get everything working.
+io.on('connection', (socket) => {
+  console.log('WORK PLEASE');
+  console.log(socket.id);
+  socket.send(socket.id);
+  socket.broadcast.emit('user connected');
+});
 
+io.use((socket, next) => {
+  const token = socket.handshake.query.token;
+  if (token) {
+    return next();
+  }
+  return next(new Error('authentication error'));
+});
+
+// then
+io.on('connection', (socket) => {
+  const token = socket.handshake.query.token;
+});
+
+io.on('message', (socket) => {
+  console.log('received the message from html');
+  socket.broadcast.emit(
+    'broadcasting that the server received the fucking incoming data',
+  );
+});
 // production variable to ensure /build file is used when in production mode
 
 if (process.env.NODE_ENV === 'production') {
@@ -52,6 +81,7 @@ app.get('/verify', sessionController.verify, (req, res) => {
 //  all interactions with postgresql go through our API router
 app.use('/api', apiRouter);
 
+app.use('/algos', algoRouter);
 //  generic error handler
 app.use('*', (req, res, next) => {
   res.status(404).send('YOU TRIED A NON EXISTENT PATH');
@@ -69,5 +99,4 @@ app.use(function (err, req, res, next) {
   res.status(errorObj.status).send(JSON.stringify(errorObj.message));
 });
 
-app.listen(PORT, () => console.log('listening on port 3000'));
 module.exports = app;

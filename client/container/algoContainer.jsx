@@ -38,7 +38,6 @@ class AlgoContainer extends Component {
     return (
       <div className="algoContainer">
         <div className="algoTitle"> ALGORACER</div>
-        HELLO
         <AlgoNavBar
           handleClick={this.handleClick}
           problems={this.state.problems}

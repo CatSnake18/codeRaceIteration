@@ -9,13 +9,6 @@ const Choice = () => {
 
   return (
     <div>
-      <button
-        onClick={() => {
-          socket.emit('EVENT', ' SOME FUckING SHIT');
-        }}
-      >
-        SEND SOME SHIT
-      </button>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -35,7 +28,6 @@ const Choice = () => {
             <MainContainer />
           </Route>
           <Route path="/algocontainer">
-            <p>123</p>
             <AlgoContainer />
           </Route>
           <Route>404 mother fuck.</Route>

@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from 'react';
 
 const CodeSnippet = (props) => {
   // const [currentLine, setCurrentLine] = useState(0);
@@ -55,12 +55,12 @@ const CodeSnippet = (props) => {
                   return (
                     <span
                       className={`word 
-                                  ${highlight && "green"}  
-                                  ${currentWord && "underline"}`}
+                                  ${highlight && 'green'}  
+                                  ${currentWord && 'underline'}`}
                       key={w_idx}
                     >
                       {/* We then take our word, split into individual letters and those will becomes spans */}
-                      {word.split("").map((letter, l_idx) => {
+                      {word.split('').map((letter, l_idx) => {
                         /* this is the logic to see where we are on the current word and change the span qualities accordingly*/
                         const isCurrentWord =
                           w_idx === props.completedWords.length;
@@ -74,9 +74,9 @@ const CodeSnippet = (props) => {
                             className={`letter ${
                               isCurrentWord && shouldBeHighlighted
                                 ? isWronglyTyped
-                                  ? "red"
-                                  : "green"
-                                : ""
+                                  ? 'red'
+                                  : 'green'
+                                : ''
                             }`}
                             key={l_idx}
                           >

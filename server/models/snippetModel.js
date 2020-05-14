@@ -14,7 +14,6 @@ const pool = new Pool({
 // exported query with the ability to read what the request was for added debugging.
 module.exports = {
   query: (text, params, callback) => {
-    console.log('executed query', text);
     return pool.query(text, params, callback);
   },
 };

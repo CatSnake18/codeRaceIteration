@@ -4,7 +4,6 @@ const algoController = require('../controllers/algoController');
 const router = express.Router();
 
 router.get('/', algoController.getAlgos, (req, res) => {
-  console.log('WE ARE TRYING TO GET');
   return res.status(200).json(res.locals.algos);
 });
 

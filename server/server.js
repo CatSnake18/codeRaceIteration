@@ -20,24 +20,24 @@ app.use(cookieparser());
 
 // boiler plate to get everything working.
 io.on('connection', (socket) => {
-  console.log('WORK PLEASE');
-  console.log(socket.id);
-  socket.send(socket.id);
-  socket.broadcast.emit('user connected');
+  socket.send('hello there biach');
+  socket.on('EVENT', () => {
+    console.log('I GOT MSG FROM THE FRONT ');
+  });
 });
 
-io.use((socket, next) => {
-  const token = socket.handshake.query.token;
-  if (token) {
-    return next();
-  }
-  return next(new Error('authentication error'));
-});
+// io.use((socket, next) => {
+//   const token = socket.handshake.query.token;
+//   if (token) {
+//     return next();
+//   }
+//   return next(new Error('authentication error'));
+// });
 
-// then
-io.on('connection', (socket) => {
-  const token = socket.handshake.query.token;
-});
+// // then
+// io.on('connection', (socket) => {
+//   const token = socket.handshake.query.token;
+// });
 
 io.on('message', (socket) => {
   console.log('received the message from html');

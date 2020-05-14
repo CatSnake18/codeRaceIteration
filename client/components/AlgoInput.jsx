@@ -5,7 +5,6 @@ const AlgoInput = (props) => {
   const [value, setValue] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('ADSASDSAA VALUEEE', value);
     const obj = {
       userCode: value,
     };

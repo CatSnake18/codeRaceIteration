@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 
 const AlgoSnippet = (props) => {
   return (
-    <div className="snippetContainer">
+    <div className="algosnipContainer">
       <div id="algo">
         <p>{props.content.problem}</p>
       </div>

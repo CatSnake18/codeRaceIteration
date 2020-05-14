@@ -247,7 +247,7 @@ const InputFieldTwo = (props) => {
   }
 
   return (
-    <div className="inputContainer">
+    <div className="inputContainer2">
       <div id="timerTwo"></div>
       {textArea}
 

@@ -6,6 +6,8 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
+    historyApiFallback: true,
+
     publicPath: '/build/',
     proxy: {
       '/callback': 'http://localhost:3000',
@@ -20,7 +22,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: 'http://localhost:8080/build/',
+    publicPath: '/',
   },
   mode,
   plugins: [

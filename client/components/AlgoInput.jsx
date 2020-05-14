@@ -21,6 +21,7 @@ const AlgoInput = (props) => {
   return (
     <form onSubmit={handleSubmit} id="searchForm">
       <textarea
+        id="textInput"
         placeholder="Enter your garbage code here..."
         onChange={(e) => setValue(e.target.value)}
         value={value}

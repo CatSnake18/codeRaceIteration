@@ -18,7 +18,8 @@ const AlgoInput = (props) => {
     setValue('');
   };
   return (
-  <div className="inputContainer">
+
+    <div className="inputContainerAlgo">
     <form onSubmit={handleSubmit} id="searchForm">
       <textarea
         id="textInput"

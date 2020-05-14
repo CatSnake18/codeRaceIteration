@@ -17,8 +17,8 @@ const AlgoNavBar = (props) => {
   ));
 
   return (
-    <div className="navBarContainer">
-      <div className="navBar">
+    <div className="navBar2Container">
+      <div className="nav2Bar">
         <ul id="problems">{problemArray}</ul>
       </div>
     </div>

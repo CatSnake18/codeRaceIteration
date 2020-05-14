@@ -4,9 +4,9 @@ const CodeSnippetTwo = (props) => {
   // If the user hasn't selected a category, render this:
   if (Object.keys(props.content).length === 0) {
     return (
-      <div className="snippetContainer">
-        <div id="snippet">
-          <p className="crtSpecial" id="noText">
+      <div className="snippetContainer2">
+        <div id="snippet2">
+          <p className="crtSpecial" id="noText2">
             Please select a category to get started...
           </p>
         </div>
@@ -23,8 +23,8 @@ const CodeSnippetTwo = (props) => {
     // this took hours to create so I suggest not messing with it unless you want to entirely overhaul the way verification is done because they are tied to gether.
     // Also note that the text actually has no spaces. this achieved via a 2em margin to the right of the span
     return (
-      <div className="snippetContainer">
-        <div id="snippet">
+      <div className="snippetContainer2">
+        <div id="snippet2">
           <p>
             {
               // we process the content.content, which is the snippet displayed on the screen to eliminate all tabs or trailing spaces

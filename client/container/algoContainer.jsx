@@ -28,7 +28,6 @@ class AlgoContainer extends Component {
       .then((problem) => problem.json())
       .then((response) => {
         const problemArray = response.map((element) => {
-          console.log(element);
           return element;
         });
         this.setState({ problems: problemArray });

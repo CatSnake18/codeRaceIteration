@@ -10,7 +10,6 @@ algoController.getAlgos = (req, res, next) => {
       return next(err);
     }
     res.locals.algos = data.rows;
-    console.log(data.rows);
     return next();
   });
 };

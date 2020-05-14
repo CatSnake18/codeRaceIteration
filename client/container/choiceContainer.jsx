@@ -2,10 +2,20 @@ import MainContainer from './MainContainer.jsx';
 import AlgoContainer from './algoContainer.jsx';
 import React, { Component, useState, useEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import io from 'socket.io-client';
 
 const Choice = () => {
+  const socket = io('http://localhost:3000');
+
   return (
     <div>
+      <button
+        onClick={() => {
+          socket.emit('EVENT', ' SOME FUckING SHIT');
+        }}
+      >
+        SEND SOME SHIT
+      </button>
       <Router>
         <Switch>
           <Route exact path="/">
